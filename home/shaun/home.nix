@@ -5,14 +5,20 @@
 { config, lib, pkgs,inputs, ... }:
 
 {
+  # inputs = {
+  #     nvim = {
+  #       url = "github:SPRAGE/nvim";
+  #       };
+  #   };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
-    ../modules/hyprland/hyprland.nix
-    ../modules/kitty/kitty.nix
     ../modules/waybar.nix
     ../modules/fonts.nix
     ./modules/git-config.nix
+    ../modules/kitty.nix
+    ../modules/hyprland.nix
+    
 
   ];
   home.username = lib.mkDefault "shaun";
@@ -39,7 +45,7 @@
     wofi
     tree
     waybar
-    hsetroot
+    nodejs
 # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -53,14 +59,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  home.sessionVariables = {
-    NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
-  };
-
-  programs.bash.profileExtra = ''
-    export NIX_PATH="nixpkgs=${inputs.nixpkgs.outPath}"
-  '';
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -92,19 +90,9 @@
   #  /etc/profiles/per-user/m3tam3re/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
   
-  #hyprland
-  # programs.kitty.enable = true;
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   package = pkgs.hyprland;
-  #   xwayland.enable = true;
-  #   systemd.enable = true;
-  # };
-  #
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

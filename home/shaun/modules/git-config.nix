@@ -9,7 +9,7 @@
       init.defaultBranch = "main";
       pull.rebase = false;
       credential.helper = "cache --timeout=3600";
-      core.editor = "vim";
+      core.editor = "nvim";
     };
   };
 }
