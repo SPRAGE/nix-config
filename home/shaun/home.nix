@@ -18,6 +18,7 @@
     ./modules/git-config.nix
     ../modules/kitty.nix
     ../modules/hyprland.nix
+    ../modules/nvim.nix
     
 
   ];

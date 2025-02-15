@@ -5,6 +5,7 @@
     git
     htop
     wget
+    neovim
   ];
 }
 
