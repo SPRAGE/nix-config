@@ -13,12 +13,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
-    ../modules/waybar.nix
-    ../modules/fonts.nix
-    ./modules/git-config.nix
-    ../modules/kitty.nix
-    ../modules/hyprland.nix
-    ../modules/nvim.nix
+    ../modules
     
 
   ];
@@ -46,19 +41,6 @@
     wofi
     tree
     waybar
-    nodejs
-# # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
