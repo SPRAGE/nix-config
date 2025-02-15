@@ -1,14 +1,18 @@
 {
   inputs = {
+    nixpkgs = {
+      url = "github:nixos/nixpkgs/nixos-24.11";
+    };
+    nixpkgs-unstable = {
+      url = "github:nixos/nixpkgs/nixos-unstable";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
   };
 
-  outputs = { self, home-manager, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -25,7 +29,6 @@
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         shaun-desk = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/shaun-desk ];
         };
