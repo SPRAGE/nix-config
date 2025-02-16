@@ -32,7 +32,7 @@
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         shaun-desk = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs ; };
           modules = [ ./hosts/shaun-desk ];
         };
       };
