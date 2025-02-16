@@ -5,7 +5,12 @@
 { config, lib, pkgs,inputs,outputs, ... }:
 
 {
-  inputs = {};
+  inputs = {
+    nvf = {
+      url = "github:notashelf/nvf";
+    };
+      
+    };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [

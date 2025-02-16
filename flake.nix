@@ -10,9 +10,6 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:notashelf/nvf";
-    };
   };
 
   outputs = { self, home-manager, nixpkgs, ... }@inputs:
@@ -39,7 +36,7 @@
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs ; };
+          specialArgs = { inherit inputs outputs ; };
           modules = [ 
           ./home/shaun/shaun-desk.nix 
           ];
