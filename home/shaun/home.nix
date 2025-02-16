@@ -5,17 +5,11 @@
 { config, lib, pkgs,inputs,outputs, ... }:
 
 {
-  inputs = {
-    nvf = {
-      url = "github:notashelf/nvf";
-    };
-      
-    };
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
     ./modules
-
+    # inputs.nvf.nixosModules.default
   ];
   home.username = lib.mkDefault "shaun";
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
