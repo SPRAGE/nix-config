@@ -15,7 +15,7 @@
     };
   };
 
-  outputs = { self, home-manager, nixpkgs, nvf, ... }@inputs:
+  outputs = { self, home-manager, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -30,29 +30,20 @@
       packages =
         forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
-
       nixosConfigurations = {
         shaun-desk = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/shaun-desk
-            home-manager.nixosModules.home-manager  # ✅ Install Home Manager as a NixOS module
-            {
-              home-manager.useGlobalPkgs = true; # Use system-wide nixpkgs
-              home-manager.useUserPackages = true; # Allow user-level package installs
-              home-manager.users.shaun = import ./home/shaun/shaun-desk.nix; # ✅ Set up Home Manager for user "shaun"
-            }
-          ];
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/shaun-desk ];
         };
       };
-
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/shaun/shaun-desk.nix ];
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ 
+          ./home/shaun/shaun-desk.nix 
+          ];
         };
       };
     };
 }
-
