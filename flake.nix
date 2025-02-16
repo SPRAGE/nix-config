@@ -39,7 +39,7 @@
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs ; };
           modules = [ 
           ./home/shaun/shaun-desk.nix 
           ];
