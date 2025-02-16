@@ -5,16 +5,11 @@
 { config, lib, pkgs,inputs, ... }:
 
 {
-  # inputs = {
-  #     nvim = {
-  #       url = "github:SPRAGE/nvim";
-  #       };
-  #   };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   imports = [
     ./modules
-    
 
   ];
   home.username = lib.mkDefault "shaun";
