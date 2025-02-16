@@ -8,15 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-# Add any new edition to default.nix in modules
+      # Add any new edition to default.nix in modules
       ./modules
-      # ./modules/networking.nix
-      # ./modules/users.nix
-      # ./modules/system-packages.nix
-      # ./modules/services.nix
-      # ./modules/audio.nix
-      # ./modules/graphics.nix
-      # ./modules/steam.nix
     ];
 
   # Bootloader.
