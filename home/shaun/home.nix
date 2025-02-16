@@ -2,7 +2,7 @@
 # 
 # home-manager init ./
 
-{ config, lib, pkgs,inputs, ... }:
+{ config, lib, pkgs,inputs,outputs, ... }:
 
 {
 
