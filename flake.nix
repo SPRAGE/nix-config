@@ -32,14 +32,14 @@
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
         shaun-desk = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs ; };
+          specialArgs = { inherit inputs outputs ; };
           modules = [ ./hosts/shaun-desk ];
         };
       };
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs ; };
+          extraSpecialArgs = { inherit inputs outputs ; };
           modules = [ 
           ./home/shaun/shaun-desk.nix 
           ];
