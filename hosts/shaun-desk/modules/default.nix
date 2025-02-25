@@ -7,6 +7,7 @@
     ./audio.nix
     ./graphics.nix
     ./steam.nix
+    ./monado.nix
 
   ];
 }

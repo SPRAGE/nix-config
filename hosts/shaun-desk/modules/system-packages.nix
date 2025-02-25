@@ -6,6 +6,7 @@
     htop
     wget
     neovim
+    alvr
   ];
 }
 

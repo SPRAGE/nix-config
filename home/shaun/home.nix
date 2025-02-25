@@ -9,7 +9,6 @@
   # manage.
   imports = [
     ./modules
-    # inputs.nvf.nixosModules.default
   ];
   home.username = lib.mkDefault "shaun";
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
@@ -35,6 +34,7 @@
     wofi
     tree
     waybar
+    libreoffice-qt6
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
