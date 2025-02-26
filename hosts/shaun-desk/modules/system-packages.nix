@@ -7,6 +7,7 @@
     wget
     neovim
     alvr
+    vimPlugins.LazyVim 
   ];
 }
 
