@@ -5,6 +5,7 @@
     ../../modules/fonts.nix
     ../../modules/kitty.nix
     ../../modules/hyprland.nix
+    ../../modules/neovim
     
     ./git-config.nix
 
