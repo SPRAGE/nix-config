@@ -9,6 +9,7 @@
   # manage.
   imports = [
     ./modules
+    ../modules/neovim
   ];
   home.username = lib.mkDefault "shaun";
   home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
