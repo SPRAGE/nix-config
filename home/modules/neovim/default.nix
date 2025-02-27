@@ -62,11 +62,11 @@ in
     recursive = true;
   };
 
-  home.file."./.config/nvim/lua/shaun/init.lua".text = ''
-    require("shaun.set")
-    require("shaun.remap")
-    vim.opt.runtimepath:append("${treesitter-parsers}")
-  '';
+#  home.file."./.config/nvim/lua/shaun/init.lua".text = ''
+#    require("shaun.set")
+#    require("shaun.remap")
+#    vim.opt.runtimepath:append("${treesitter-parsers}")
+#  '';
 
   # Treesitter is configured as a locally developed module in lazy.nvim
   # we hardcode a symlink here so that we can refer to it in our lazy config
