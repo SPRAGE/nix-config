@@ -1,4 +1,3 @@
-﻿{config, lib, pkgs,inputs,outputs, ... } :
 {
   imports = [
     ../../modules/waybar.nix
