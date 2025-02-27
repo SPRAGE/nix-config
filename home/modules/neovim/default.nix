@@ -55,16 +55,6 @@ in
     plugins = with pkgs.vimPlugins; [
   treesitterWithGrammars
 
-  # Add more plugins here
-  nvim-lspconfig
-  nvim-cmp
-  luasnip
-  cmp-nvim-lsp
-  cmp-buffer
-  cmp-path
-  cmp_luasnip
-  mason-nvim
-  mason-lspconfig-nvim
 ];
 
 
