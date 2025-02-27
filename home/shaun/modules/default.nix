@@ -7,6 +7,5 @@
     ../../modules/hyprland.nix
     ../../modules/neovim
     ./git-config.nix
-
   ];
 }
