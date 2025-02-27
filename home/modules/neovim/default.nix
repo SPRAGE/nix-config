@@ -1,4 +1,4 @@
-{pkgs, ... } :
+{config, lib, pkgs,inputs,outputs, ... } :
 let
 
   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
