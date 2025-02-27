@@ -5,7 +5,7 @@
     git
     htop
     wget
-    neovim
+    #neovim
     alvr
     vimPlugins.LazyVim 
   ];
