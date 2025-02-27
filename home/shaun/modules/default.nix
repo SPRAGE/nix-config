@@ -1,10 +1,11 @@
-﻿{ config, lib, pkgs,inputs,outputs, ... }:
+﻿{config, lib, pkgs,inputs,outputs, ... } :
 {
   imports = [
     ../../modules/waybar.nix
     ../../modules/fonts.nix
     ../../modules/kitty.nix
     ../../modules/hyprland.nix
+    ../../modules/neovim
     ./git-config.nix
 
   ];
