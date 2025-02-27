@@ -151,22 +151,7 @@ return {
                     end,
 
                     gopls = lsp.noop,
-                  rust_analyzer = function()
-                  require('lspconfig').rust_analyzer.setup({
-                      cmd = { "/home/shaun/.nix-profile/bin/rust-analyzer" }, -- ✅ Use Nix-installed rust-analyzer
-                      settings = {
-                          ["rust-analyzer"] = {
-                              cargo = {
-                                  allFeatures = true,
-                                  loadOutDirsFromCheck = true,
-                                  buildScripts = { enable = true },
-                              },
-                              checkOnSave = { command = "clippy" },
-                              procMacro = { enable = true },
-                                  },
-                              },
-                          })
-                      end,
+                    rust_analyzer = lsp.noop,
 
                     yamlls = function()
                         require('lspconfig').yamlls.setup({
@@ -203,4 +188,3 @@ return {
         end
     }
 }
-
