@@ -80,6 +80,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        cmd = { "/home/shaun/.nix-profile/bin/rust-analyzer" },
         taplo = {
           keys = {
             {

@@ -39,7 +39,7 @@ in
     ripgrep
     fd
     lua-language-server
-    rust-analyzer-unwrapped
+    rust-analyzer
     black
     nodejs_22
     gh
