@@ -22,7 +22,7 @@ require('mason-lspconfig').setup({
             })
         end
     }
--- })
+})
 --
 -- -- return {
 -- --     {
