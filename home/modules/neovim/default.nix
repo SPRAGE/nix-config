@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-
   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
     p.comment
@@ -40,10 +39,11 @@ in
     fd
     lua-language-server
     rust-analyzer-unwrapped
+    pyright  # Python LSP
+    nil      # Nix LSP
     black
     nodejs_22
     gh
-    
   ];
 
   programs.neovim = {
@@ -53,8 +53,11 @@ in
     coc.enable = false;
     withNodeJs = true;
 
-    plugins = [
+    plugins = with pkgs.vimPlugins; [
       treesitterWithGrammars
+      mason-nvim
+      mason-lspconfig-nvim
+      nvim-lspconfig
     ];
   };
 
@@ -66,7 +69,7 @@ in
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
-    require("shaun.mason")
+    require("shaun.mason")  -- Ensure this module exists
     require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
@@ -77,5 +80,5 @@ in
     recursive = true;
     source = treesitterWithGrammars;
   };
-
 }
+
