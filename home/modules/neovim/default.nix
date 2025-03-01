@@ -39,8 +39,8 @@ in
     fd
     lua-language-server
     rust-analyzer-unwrapped
-    pyright  # Python LSP
-    nil      # Nix LSP
+    pyright
+    nil
     black
     nodejs_22
     gh
@@ -58,6 +58,7 @@ in
       mason-nvim
       mason-lspconfig-nvim
       nvim-lspconfig
+      plenary-nvim  # Required for Mason
     ];
   };
 
@@ -69,13 +70,11 @@ in
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
-    require("shaun.mason")  -- Ensure this module exists
+    require("shaun.mason")
     require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
 
-  # Treesitter is configured as a locally developed module in lazy.nvim
-  # we hardcode a symlink here so that we can refer to it in our lazy config
   home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
     recursive = true;
     source = treesitterWithGrammars;
