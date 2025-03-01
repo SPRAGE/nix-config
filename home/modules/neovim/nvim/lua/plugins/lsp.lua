@@ -1,4 +1,13 @@
-require('mason-lspconfig').setup({
+-- local lspconfig = require("lspconfig")
+-- local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- lspconfig.clangd.setup({ capabilities = lsp_capabilities })
+-- lspconfig.gopls.setup({ capabilities = lsp_capabilities })
+
+
+
+
+
+require('lspconfig').setup({
     ensure_installed = {}, -- No need to install LSPs via Mason
     handlers = {
         function(server_name)
