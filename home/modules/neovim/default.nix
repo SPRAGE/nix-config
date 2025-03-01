@@ -43,6 +43,7 @@ in
     black
     nodejs_22
     gh
+    
   ];
 
   programs.neovim = {
@@ -65,6 +66,7 @@ in
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
+    require("shaun.mason")
     require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
