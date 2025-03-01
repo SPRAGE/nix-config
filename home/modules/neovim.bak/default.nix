@@ -1,6 +1,5 @@
 { pkgs, ... }:
 let
-
   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
     p.comment
@@ -40,6 +39,8 @@ in
     fd
     lua-language-server
     rust-analyzer-unwrapped
+    pyright
+    nil
     black
     nodejs_22
     gh
@@ -52,8 +53,12 @@ in
     coc.enable = false;
     withNodeJs = true;
 
-    plugins = [
+    plugins = with pkgs.vimPlugins; [
       treesitterWithGrammars
+      nvim-lspconfig
+      # mason-nvim
+      # mason-lspconfig-nvim
+      # plenary-nvim  # Required for Mason
     ];
   };
 
@@ -62,17 +67,16 @@ in
     recursive = true;
   };
 
-  home.file."./.config/nvim/lua/kidsan/init.lua".text = ''
-    require("kidsan.set")
-    require("kidsan.remap")
+  home.file."./.config/nvim/lua/shaun/init.lua".text = ''
+    require("shaun.set")
+    require("shaun.remap")
+    require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
 
-  # Treesitter is configured as a locally developed module in lazy.nvim
-  # we hardcode a symlink here so that we can refer to it in our lazy config
   home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
     recursive = true;
     source = treesitterWithGrammars;
   };
-
 }
+

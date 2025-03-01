@@ -1,14 +1,11 @@
-return { 
+return {
     {
-        "ellisonleao/gruvbox.nvim", 
+        "dracula/vim",
         lazy = false,
-        priority = 1000 ,
+        priority = 1000,
         opts = {},
         config = function()
-            vim.cmd([[colorscheme gruvbox]])
+            vim.cmd([[colorscheme dracula]])
         end
-    }
+    },
 }
-
-
-

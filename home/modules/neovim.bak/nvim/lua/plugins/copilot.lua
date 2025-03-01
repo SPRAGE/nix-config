@@ -4,13 +4,13 @@ return {
         enabled = false,
         event = "BufEnter",
         opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
+            suggestion = { enabled = true },
+            panel = { enabled = true },
         },
     },
     {
         "zbirenbaum/copilot-cmp",
-        enabled = false,
+        enabled = true,
         opts = {}
     }
 }
