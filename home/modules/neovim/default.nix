@@ -65,6 +65,7 @@ in
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
+    require("shaun.theme")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
 
