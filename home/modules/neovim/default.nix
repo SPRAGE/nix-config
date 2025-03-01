@@ -55,10 +55,10 @@ in
 
     plugins = with pkgs.vimPlugins; [
       treesitterWithGrammars
-      mason-nvim
-      mason-lspconfig-nvim
       nvim-lspconfig
-      plenary-nvim  # Required for Mason
+      # mason-nvim
+      # mason-lspconfig-nvim
+      # plenary-nvim  # Required for Mason
     ];
   };
 
@@ -70,7 +70,6 @@ in
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
-    require("shaun.mason")
     require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
