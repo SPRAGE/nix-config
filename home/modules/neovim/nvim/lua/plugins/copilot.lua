@@ -18,10 +18,12 @@ return {
                 auto_trigger = true, -- Enables inline suggestions automatically
                 debounce = 75, -- Slight delay for better performance
                 keymap = {
-                    accept = "<Tab>", -- Accept current suggestion
+                    accept = "<Tab>", -- Accept the entire suggestion
+                    accept_word = "<M-w>", -- Accept one word
+                    accept_line = "<C-.>", -- Accept one line (Ctrl + >)
                     next = "<M-]>", -- Next suggestion
                     prev = "<M-[>", -- Previous suggestion
-                    dismiss = "<C-]>",
+                    dismiss = "<C-]>", -- Dismiss suggestion
                 },
             },
             filetypes = {
