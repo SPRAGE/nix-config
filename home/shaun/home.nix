@@ -38,6 +38,7 @@
     xfce.thunar
     unzip
     rustc
+    cargo
     go
     fzf
   ];
