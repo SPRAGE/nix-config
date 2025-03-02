@@ -43,6 +43,9 @@ in
     black
     nodejs_22
     gh
+    clippy
+    clang
+
   ];
 
   programs.neovim = {
