@@ -66,6 +66,7 @@ in
     require("shaun.set")
     require("shaun.remap")
     require("shaun.theme")
+    require("shaun.clipboard")
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
 
