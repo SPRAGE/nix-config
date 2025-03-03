@@ -4,11 +4,7 @@ return {
     main = "nvim-treesitter.configs",
     dev = true,
     opts = {
-        -- autotag = {
-        --     enable = true
-        -- },
         highlight = {
-            -- `false` will disable the whole extension
             enable = true,
             additional_vim_regex_highlighting = false,
         },
@@ -21,6 +17,10 @@ return {
                 node_decremental = "<BS>",
             },
         },
+        -- Add this folding config
+        fold = {
+            enable = true
+        }
     }
-
 }
+

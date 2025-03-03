@@ -13,6 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
+-- Fold settings
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+
 
 require("lazy").setup("plugins", {
     rocks = { enabled = false },
