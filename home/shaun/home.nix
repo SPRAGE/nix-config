@@ -5,6 +5,10 @@
 { config, lib, pkgs, inputs, outputs, nixpkgs-unstable, ... }:
 
 let
+    unstablePkgs = import nixpkgs-unstable {
+        system = pkgs.system;
+        config.allowUnfree = true;
+      };
   # Define stable packages from nixpkgs
   stablePackages = with pkgs; [
     gh
@@ -21,11 +25,10 @@ let
     go
     fzf
   ];
-
+    unstablePackages = with unstablePkgs; [
+        windsurf
+      ];
   # Define unstable packages from nixpkgs-unstable
-  unstablePackages = with nixpkgs-unstable.legacyPackages.${pkgs.system}; [
-    windsurf
-  ];
 in
 {
   # Home Manager needs a bit of information about you and the paths it should manage.
