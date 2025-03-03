@@ -2,32 +2,9 @@
 # 
 # home-manager init ./
 
-{ config, lib, pkgs,inputs,outputs, ... }:
-
-{
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  imports = [
-    ./modules
-  ];
-  home.username = lib.mkDefault "shaun";
-  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+{ config, lib, pkgs,inputs,outputs,nixpkgs-unstable, ... }:
+let
+  stablePackages = with pkgs; [
     gh
     kitty
     firefox
@@ -41,11 +18,32 @@
     cargo
     go
     fzf
-  ]++ with nixpkgs-unstable.legacyPackages.${pkgs.system}; [
-    # Packages from nixpkgs-unstable
-    
-    windsurf
   ];
+
+  unstablePackages = with nixpkgs-unstable.legacyPackages.${pkgs.system}; [
+  windsurf
+  ];
+in
+{
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  imports = [
+    ./modules
+  ];
+  home.username = lib.mkDefault "shaun";
+  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
+  home.packages = stablePackages ++ unstablePackages;
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "24.05"; # Please read the comment before changing.
+
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
