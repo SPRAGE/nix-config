@@ -43,7 +43,7 @@
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs ; };
+          extraSpecialArgs = { inherit inputs outputs ; nixpkgs-unstable = inputs.nixpkgs-unstable;};
           modules = [
           nvf.homeManagerModules.default
           ./home/shaun/shaun-desk.nix 
