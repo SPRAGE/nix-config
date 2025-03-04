@@ -6,6 +6,8 @@ return {
     optional = true,
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
+      -- Ensure opts.experimental exists before modifying it
+      opts.experimental = opts.experimental or {}
       -- Disable ghost text for nvim-cmp, use copilot suggestion instead
       opts.experimental.ghost_text = false
     end,
@@ -18,13 +20,12 @@ return {
     "github/copilot.vim",
     event = "VeryLazy",
     config = function()
-      -- For copilot.vim
-      -- enable copilot for specific filetypes
+      -- Enable Copilot for specific filetypes
       vim.g.copilot_filetypes = {
         ["TelescopePrompt"] = false,
       }
 
-      -- Set to true to assume that copilot is already mapped
+      -- Assume Copilot is already mapped
       vim.g.copilot_assume_mapped = true
       -- Set workspace folders
       vim.g.copilot_workspace_folders = "~/Projects"
@@ -33,7 +34,7 @@ return {
       local keymap = vim.keymap.set
       local opts = { silent = true }
 
-      -- Set <C-y> to accept copilot suggestion
+      -- Set <C-y> to accept Copilot suggestion
       keymap("i", "<C-y>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false })
 
       -- Set <C-i> to accept line
@@ -48,23 +49,41 @@ return {
       keymap("i", "<C-d>", "<Plug>(copilot-dismiss)", opts)
     end,
   },
-  -- Add status line icon for copilot
+  -- Add status line icon for Copilot
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
+      -- Ensure sections table exists
+      opts.sections = opts.sections or {}
+      opts.sections.lualine_x = opts.sections.lualine_x or {}
+
       table.insert(opts.sections.lualine_x, 2, {
         function()
-          local icon = require("lazyvim.config").icons.kinds.Copilot
+          -- Default Copilot icon
+          local icon = " " -- GitHub logo or any other relevant symbol
+          local ok, lazyvim = pcall(require, "lazyvim.config")
+          if ok and lazyvim.icons and lazyvim.icons.kinds then
+            icon = lazyvim.icons.kinds.Copilot or icon
+          end
           return icon
         end,
         cond = function()
-          local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
-          return ok and #clients > 0
+          -- Ensure compatibility with different Neovim versions
+          for _, client in ipairs(vim.lsp.get_active_clients()) do
+            if client.name == "copilot" then
+              return true
+            end
+          end
+          return false
         end,
         color = function()
-          return { fg = Snacks.util.color("Special") }
+          -- Default to green if Snacks.util.color is unavailable
+          local default_fg = "#6CC644" -- Copilot Green
+          local ok, Snacks = pcall(require, "Snacks.util")
+          return ok and { fg = Snacks.color("Special") } or { fg = default_fg }
         end,
       })
     end,
   },
 }
+
