@@ -19,6 +19,14 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
+vim.diagnostic.config({
+  virtual_text = false,
+  float = {
+    border = "rounded",
+    source = "if_many", -- Show diagnostic source if multiple are available
+  },
+})
+
 
 require("lazy").setup("plugins", {
     rocks = { enabled = false },
