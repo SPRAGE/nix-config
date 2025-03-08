@@ -8,6 +8,7 @@
     ./graphics.nix
     ./steam.nix
     ./monado.nix
+    ./greetd.nix
 
   ];
 }
