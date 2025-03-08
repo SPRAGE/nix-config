@@ -1,31 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = ''
-          export XDG_RUNTIME_DIR=/run/user/$(id -u greeter)
-          export WAYLAND_DISPLAY=wayland-0
-          ${pkgs.greetd.gtkgreet}/bin/gtkgreet
-        '';
-        user = "greeter";
-      };
-    };
-  };
+  # Enable SDDM (Wayland-compatible display manager)
+  services.displayManager.sddm.enable = true;
 
-  # Ensure the 'greeter' user exists and has permissions
-  users.users.greeter = {
-    isSystemUser = true;
-    group = "greeter";
-    extraGroups = [ "video" "input" "seat" ]; # Ensure proper Wayland access
-  };
+  # Set SDDM to start Wayland sessions first
+  services.displayManager.sddm.wayland.enable = true;
 
-  users.groups.greeter = {};
-  users.groups.seat.members = [ "greeter" ];
-
-  # Install necessary system packages
+  # Install system-wide Wayland packages
   environment.systemPackages = with pkgs; [
     sway
     waybar
@@ -34,10 +16,9 @@
     grim slurp
     wl-clipboard
     mako
-    greetd.gtkgreet
   ];
 
-  # Enable seatd (Wayland session management)
+  # Enable seatd for session management (recommended for Wayland)
   services.seatd.enable = true;
 }
 
