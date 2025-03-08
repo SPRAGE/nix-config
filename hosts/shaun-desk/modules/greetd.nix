@@ -24,7 +24,5 @@
   # Enable seatd for Wayland session management
   services.seatd.enable = true;
 
-  # Enable hardware support (for some Wayland features)
-  hardware.opengl.enable = true;
 }
 
