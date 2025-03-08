@@ -6,7 +6,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.gtkgreet}/bin/gtkgreet";
+        command = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
         user = "greeter";  # Use a dedicated user
       };
     };
@@ -21,7 +21,7 @@
     grim slurp  # Screenshots
     wl-clipboard  # Clipboard support
     mako  # Notifications
-    gtd.gtkgreet  # GTK-based Greeter for Greetd
+    greetd.gtkgreet  # GTK-based Greeter for Greetd
   ];
 
   # Enable seatd (Wayland Session Management)
