@@ -1,41 +1,43 @@
 { config, pkgs, ... }:
 
 {
-  # Enable Greetd (Minimal Wayland Login Manager)
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-        user = "greeter";  # Use a dedicated user
+        command = ''
+          export XDG_RUNTIME_DIR=/run/user/$(id -u greeter)
+          export WAYLAND_DISPLAY=wayland-0
+          ${pkgs.greetd.gtkgreet}/bin/gtkgreet
+        '';
+        user = "greeter";
       };
     };
   };
-
-  # Install System-wide Wayland Environment
-  environment.systemPackages = with pkgs; [
-    sway
-    waybar
-    dmenu  # Optional: Launcher
-    alacritty  # Optional: Terminal
-    grim slurp  # Screenshots
-    wl-clipboard  # Clipboard support
-    mako  # Notifications
-    greetd.gtkgreet  # GTK-based Greeter for Greetd
-  ];
-
-  # Enable seatd (Wayland Session Management)
-  services.seatd.enable = true;
 
   # Ensure the 'greeter' user exists and has permissions
   users.users.greeter = {
     isSystemUser = true;
     group = "greeter";
+    extraGroups = [ "video" "input" "seat" ]; # Ensure proper Wayland access
   };
 
   users.groups.greeter = {};
-
-  # Fix permissions for seatd
   users.groups.seat.members = [ "greeter" ];
+
+  # Install necessary system packages
+  environment.systemPackages = with pkgs; [
+    sway
+    waybar
+    dmenu
+    alacritty
+    grim slurp
+    wl-clipboard
+    mako
+    greetd.gtkgreet
+  ];
+
+  # Enable seatd (Wayland session management)
+  services.seatd.enable = true;
 }
 
