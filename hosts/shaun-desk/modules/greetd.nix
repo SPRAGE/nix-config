@@ -17,6 +17,13 @@
     wl-clipboard
     mako
   ];
+  environment.etc."xdg/wayland-sessions/sway.desktop".text = ''
+    [Desktop Entry]
+    Name=Sway
+    Comment=An i3-compatible Wayland window manager
+    Exec=sway
+    Type=Application
+  '';
 
   # Enable seatd for session management (recommended for Wayland)
   services.seatd.enable = true;
