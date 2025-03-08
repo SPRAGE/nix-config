@@ -28,15 +28,20 @@
       package = pkgs.gruvbox-dark-gtk;
       name = "Gruvbox";
     };
-    cursor = {
-      package = pkgs.gruvbox-gtk-theme;
-      name = "Grubox-icons";
-    };
+    # Vcursor = {
+    #   package = pkgs.gruvbox-gtk-theme;
+    #   name = "Grubox-icons";
+    # };
     font = {
       package = pkgs.dejavu_fonts;
       name = "DejaVu Sans";
       size = 10;
     };
+  };
+  xdg.cursorTheme = {
+    package = pkgs.gruvbox-gtk-theme;
+    name = "Grubox-icons";
+    size = 24; # You can adjust this value
   };
 
   services.swayidle = {
