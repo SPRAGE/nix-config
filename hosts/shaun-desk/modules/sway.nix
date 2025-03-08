@@ -21,20 +21,6 @@
     waybar
     rofi-wayland-unwrapped
   ];
-    {
-      xdg.configFile."gtk-3.0/settings.ini".text = ''
-        [Settings]
-        gtk-theme-name=Gruvbox
-        gtk-icon-theme-name=Gruvbox-icons
-        gtk-font-name=DejaVu Sans 10
-      '';
-
-      xdg.configFile."gtk-2.0/gtkrc".text = ''
-        gtk-theme-name="Gruvbox"
-        gtk-icon-theme-name="Gruvbox-icons"
-        gtk-font-name="DejaVu Sans 10"
-      '';
-    }
 
 
   services.swayidle = {
