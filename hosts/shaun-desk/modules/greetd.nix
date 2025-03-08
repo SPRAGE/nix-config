@@ -5,8 +5,7 @@
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = "sway"; # Auto-start Sway for the user
-      user = "shaun"; # Use the user's username
+      command = "${pkgs.gtkgreet}/bin/gtkgreet";
     };
   };
 
@@ -19,6 +18,7 @@
     grim slurp # Screenshots
     wl-clipboard # Clipboard support
     mako # Notifications
+    gtkgreet # GTK Greeter
   ];
 
   # Enable seatd for Wayland session management
