@@ -8,6 +8,8 @@
     ./graphics.nix
     ./steam.nix
     ./monado.nix
+    ./sway.nix
+    ./waybar.nix
 
   ];
 }
