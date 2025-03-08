@@ -14,8 +14,8 @@
     glib # gsettings
     swaylock
     swayidle
-    grim # screenshot functionality
-    slurp # screenshot functionality
+    # grim # screenshot functionality
+    # slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     xdg-utils
     waybar
@@ -28,7 +28,7 @@
       package = pkgs.gruvbox-dark-gtk;
       name = "Gruvbox";
     };
-    cursorTheme = {
+    cursor = {
       package = pkgs.gruvbox-gtk-theme;
       name = "Grubox-icons";
     };
