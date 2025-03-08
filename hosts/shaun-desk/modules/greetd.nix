@@ -2,12 +2,13 @@
 
 {
   # # Enable Greetd (Minimal Login Manager)
-  # services.greetd = {
-  #   enable = true;
-  #   settings.default_session = {
-  #     command = "sway"; # Auto-start Sway for the user
-  #   };
-  # };
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "sway"; # Auto-start Sway for the user
+      user = "${config.users.users.username}""; # Use the user's username
+    };
+  };
 
   # Install Sway, Waybar, and Dependencies System-wide
   environment.systemPackages = with pkgs; [
