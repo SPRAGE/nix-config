@@ -6,7 +6,7 @@
     enable = true;
     settings.default_session = {
       command = "sway"; # Auto-start Sway for the user
-      user = "${config.users.users.username}""; # Use the user's username
+      user = ''${config.users.users.username}''; # Use the user's username
     };
   };
 
