@@ -6,7 +6,6 @@
     enable = true;
     settings.default_session = {
       command = "sway"; # Auto-start Sway for the user
-      user = "shaun"; # Replace with your actual username
     };
   };
 
