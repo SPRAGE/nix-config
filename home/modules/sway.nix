@@ -14,14 +14,30 @@
     glib # gsettings
     swaylock
     swayidle
-    # grim # screenshot functionality
-    # slurp # screenshot functionality
+    grim # screenshot functionality
+    slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     xdg-utils
     waybar
     rofi-wayland-unwrapped
   ];
 
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.gruvbox-dark-gtk;
+      name = "Gruvbox";
+    };
+    cursorTheme = {
+      package = pkgs.gruvbox-gtk-theme;
+      name = "Grubox-icons";
+    };
+    font = {
+      package = pkgs.dejavu_fonts;
+      name = "DejaVu Sans";
+      size = 10;
+    };
+  };
 
   services.swayidle = {
     enable = true;
