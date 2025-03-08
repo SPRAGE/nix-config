@@ -21,7 +21,7 @@
     grim slurp  # Screenshots
     wl-clipboard  # Clipboard support
     mako  # Notifications
-    gtkgreet  # GTK-based Greeter for Greetd
+    gtd.gtkgreet  # GTK-based Greeter for Greetd
   ];
 
   # Enable seatd (Wayland Session Management)
