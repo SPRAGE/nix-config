@@ -25,6 +25,10 @@ let
     cargo
     go
     fzf
+    (rust-bin.stable.latest.default.override {
+    extensions = [ "rust-src" "clippy" ];  # Optional extensions
+    targets = [ "x86_64-unknown-linux-musl" ];  # Add musl target
+  })
   ];
     unstablePackages = with unstablePkgs; [
         windsurf
