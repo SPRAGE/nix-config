@@ -21,6 +21,7 @@ let
     xfce.thunar
     unzip
     rustc
+    rustup
     cargo
     go
     fzf
