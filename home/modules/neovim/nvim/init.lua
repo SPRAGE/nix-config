@@ -19,6 +19,16 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*",
+  command = "tabnew"
+})
+
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*",
+  command = "tabnew"
+})
+
 vim.diagnostic.config({
   virtual_text = false,
   float = {
