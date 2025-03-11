@@ -1,6 +1,7 @@
 { pkgs, ... }:
-let
 
+let
+  # Treesitter with grammars
   treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
     p.comment
@@ -33,6 +34,7 @@ let
     name = "treesitter-parsers";
     paths = treesitterWithGrammars.dependencies;
   };
+
 in
 {
   home.packages = with pkgs; [
@@ -45,26 +47,33 @@ in
     gh
     clippy
     clang
-
   ];
 
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-unwrapped;
     vimAlias = true;
-    coc.enable = false;
     withNodeJs = true;
 
     plugins = [
       treesitterWithGrammars
+      pkgs.vimPlugins.LazyVim  # Install LazyVim
     ];
   };
 
+  # LazyVim expects configuration in ~/.config/nvim
   home.file."./.config/nvim/" = {
     source = ./nvim;
     recursive = true;
   };
 
+  # LazyVim requires an init.lua file to bootstrap
+  home.file."./.config/nvim/init.lua".text = ''
+    -- Set LazyVim as the main config
+    require("lazyvim.config").setup()
+  '';
+
+  # Ensure Treesitter is available
   home.file."./.config/nvim/lua/shaun/init.lua".text = ''
     require("shaun.set")
     require("shaun.remap")
@@ -74,11 +83,10 @@ in
     vim.opt.runtimepath:append("${treesitter-parsers}")
   '';
 
-  # Treesitter is configured as a locally developed module in lazy.nvim
-  # we hardcode a symlink here so that we can refer to it in our lazy config
+  # Treesitter is configured as a locally developed module in LazyVim
   home.file."./.local/share/nvim/nix/nvim-treesitter/" = {
     recursive = true;
     source = treesitterWithGrammars;
   };
-
 }
+
