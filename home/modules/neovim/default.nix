@@ -3,21 +3,16 @@
 {
   programs.neovim = {
     extraPackages = with pkgs; [
-      # LazyVim
+      # LazyVim dependencies
       lua-language-server
       stylua
-      # Telescope
       ripgrep
-    ];
-
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
     ];
 
     extraLuaConfig =
       let
         plugins = with pkgs.vimPlugins; [
-          # LazyVim
+          # LazyVim Core Plugins
           LazyVim
           bufferline-nvim
           cmp-buffer
@@ -83,27 +78,21 @@
             -- reuse files from pkgs.vimPlugins.*
             path = "${lazyPath}",
             patterns = { "" },
-            -- fallback to download
             fallback = true,
           },
           spec = {
-            { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-            -- The following configs are needed for fixing lazyvim on nix
-            -- force enable telescope-fzf-native.nvim
+            { "LazyVim/LazyVim", import = "lazyvim.plugins.extras" },
             { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-            -- disable mason.nvim, use programs.neovim.extraPackages
             { "williamboman/mason-lspconfig.nvim", enabled = false },
             { "williamboman/mason.nvim", enabled = false },
-            -- import/override with your plugins
             { import = "plugins" },
-            -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
             { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
           },
         })
       '';
   };
 
-  # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
+  # Ensure Treesitter is handled by Nix
   xdg.configFile."nvim/parser".source =
     let
       parsers = pkgs.symlinkJoin {
@@ -111,13 +100,18 @@
         paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
           c
           lua
+          python
+          nix
+          json
+          rust
+          typescript
         ])).dependencies;
       };
     in
     "${parsers}/parser";
 
-  # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
-  xdg.configFile."nvim/lua".source = ./lua;
+  # Include user-specific LazyVim configuration
+  xdg.configFile."nvim/lua".source = builtins.path { path = ./lua; filter = name: type: type == "regular"; };
 }
 
 
