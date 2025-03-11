@@ -10,25 +10,32 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Basic settings
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
 vim.opt.guicursor = ""
+
 -- Fold settings
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 
-vim.api.nvim_create_autocmd("BufNewFile", {
+-- Ensure only normal buffers open in tabs (excludes Neo-tree)
+vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*",
-  command = "tabnew"
+  callback = function()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    local filetype = vim.bo.filetype
+    -- Exclude Neo-tree and other sidebar plugins
+    if not bufname:match("neo%-tree") and filetype ~= "neo-tree" then
+      vim.cmd("tabnew %")
+    end
+  end
 })
 
-vim.api.nvim_create_autocmd("BufRead", {
-  pattern = "*",
-  command = "tabnew"
-})
-
+-- Diagnostics UI tweaks
 vim.diagnostic.config({
   virtual_text = false,
   float = {
@@ -37,7 +44,13 @@ vim.diagnostic.config({
   },
 })
 
+-- Ensure Neo-tree remains open across tabs
+vim.api.nvim_create_autocmd("TabEnter", {
+  pattern = "*",
+  command = "Neotree show"
+})
 
+-- Lazy.nvim setup
 require("lazy").setup("plugins", {
     rocks = { enabled = false },
     dev = {
@@ -46,4 +59,7 @@ require("lazy").setup("plugins", {
         fallback = false,
     }
 })
+
+-- Load personal module
 require("shaun")
+
