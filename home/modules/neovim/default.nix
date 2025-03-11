@@ -2,6 +2,7 @@
 
 {
   programs.neovim = {
+    enable = true;
     extraPackages = with pkgs; [
       # LazyVim dependencies
       lua-language-server
