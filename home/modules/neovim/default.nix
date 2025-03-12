@@ -1,5 +1,8 @@
 { config, pkgs, inputs, ... }:
 
+let
+  helpers = import ../lib/icons.nix { inherit pkgs; }; # ✅ Import helpers
+in
 {
   imports = [ 
 	inputs.nixvim.homeManagerModules.nixvim 
@@ -13,4 +16,8 @@
       print("Neovim is now managed by Nixvim!")
     '';
   };
+extraSpecialArgs = {
+    inherit helpers;
+  };
+
 }
