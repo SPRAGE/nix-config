@@ -54,7 +54,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs ; nixpkgs-unstable = inputs.nixpkgs-unstable;};
           modules = [
-          nvf.homeManagerModules.default
+	  inputs.nixvim.homeManagerModules.nixvim # ✅ Import the nixvim module
           ./home/shaun/shaun-desk.nix 
           ];
         };
