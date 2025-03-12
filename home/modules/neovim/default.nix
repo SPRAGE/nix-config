@@ -103,7 +103,7 @@
 
   # Ensure Treesitter is handled inside $HOME (Fixes file conflict)
   xdg.configFile."nvim/parser".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nvim/parser";
+  xdg.configFile."nvim".source = ./nvim;
 
-  # Ensure Neovim config is correctly linked
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
+
 }
