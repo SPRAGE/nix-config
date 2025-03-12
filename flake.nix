@@ -17,7 +17,7 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvix.url = "git@github.com-shaun:SPRAGE/nvix.git";
+    nvix.url = "github.com/SPRAGE/nvix.git";
 
   };
 
