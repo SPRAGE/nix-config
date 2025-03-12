@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ]; # ✅ Import nixvim properly
 
   programs.nixvim = {
     enable = true;
     extraConfigLua = ''
-      print("Neovim with nixvim loaded!")
+      print("Neovim is now managed by Nixvim!")
     '';
   };
 }

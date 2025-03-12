@@ -52,9 +52,12 @@
       homeConfigurations = {
         "shaun@shaun-desk" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs ; nixpkgs-unstable = inputs.nixpkgs-unstable;};
+          extraSpecialArgs = { inherit inputs outputs ; 
+				nixpkgs-unstable = inputs.nixpkgs-unstable;
+				nixvim = inputs.nixvim; # ✅ Pass nixvim explicitly
+
+	};
           modules = [
-	  inputs.nixvim.homeManagerModules.nixvim # ✅ Import the nixvim module
           ./home/shaun/shaun-desk.nix 
           ];
         };
