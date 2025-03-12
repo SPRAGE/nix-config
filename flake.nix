@@ -18,8 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvix = {
-      url = "git+ssh://git@github.com/SPRAGE/nvix.git";
-      ref = "main";
+      url = "git+ssh://git@github.com/SPRAGE/nvix.git/main";
     };
 
   };
