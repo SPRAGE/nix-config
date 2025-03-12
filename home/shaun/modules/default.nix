@@ -4,8 +4,9 @@
     ../../modules/waybar.nix
     ../../modules/fonts.nix
     ../../modules/kitty.nix
-    # ../../modules/hyprland.nix
+    ../../modules/neovim
     ../../modules/sway.nix
     ./git-config.nix
+  
   ];
 }
