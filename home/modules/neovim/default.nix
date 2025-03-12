@@ -3,11 +3,15 @@
 {
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-unwrapped;
+    vimAlias = true;
+
     extraPackages = with pkgs; [
       # LazyVim dependencies
       lua-language-server
       stylua
       ripgrep
+      fd
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -97,24 +101,9 @@
       '';
   };
 
-  # Ensure Treesitter is handled by Nix
-  xdg.configFile."nvim/parser".source =
-    let
-      parsers = pkgs.symlinkJoin {
-        name = "treesitter-parsers";
-        paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-          c
-          lua
-          python
-          nix
-          json
-          rust
-          typescript
-        ])).dependencies;
-      };
-    in
-    "${parsers}/parser";
+  # Ensure Treesitter is handled inside $HOME (Fixes file conflict)
+  xdg.configFile."nvim/parser".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nvim/parser";
 
   # Ensure Neovim config is correctly linked
-  xdg.configFile."nvim".source = ./nvim;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 }
