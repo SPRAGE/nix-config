@@ -6,7 +6,6 @@
     ../../modules/kitty.nix
     # ../../modules/hyprland.nix
     ../../modules/sway.nix
-    ../../modules/neovim
     ./git-config.nix
   ];
 }

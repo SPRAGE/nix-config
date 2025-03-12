@@ -22,9 +22,10 @@
     # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
     url = "github:nix-community/nixvim/nixos-24.11";
 
+
     inputs.nixpkgs.follows = "nixpkgs";
   };
-
+    Akari.url = "github:spector700/Akari";
 
   };
 
@@ -54,8 +55,6 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs ; 
 				nixpkgs-unstable = inputs.nixpkgs-unstable;
-				nixvim = inputs.nixvim; # ✅ Pass nixvim explicitly
-
 	};
           modules = [
           ./home/shaun/shaun-desk.nix 
