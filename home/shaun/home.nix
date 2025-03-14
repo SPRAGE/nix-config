@@ -2,13 +2,21 @@
 #
 # home-manager init ./
 
-{ config, lib, pkgs, inputs, outputs, nixpkgs-unstable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  outputs,
+  nixpkgs-unstable,
+  ...
+}:
 
 let
-    unstablePkgs = import nixpkgs-unstable {
-        system = pkgs.system;
-        config.allowUnfree = true;
-      };
+  unstablePkgs = import nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
   # Define stable packages from nixpkgs
   stablePackages = with pkgs; [
     gh
@@ -24,6 +32,7 @@ let
     cargo
     go
     fzf
+    clippy
   ];
 
   unstablePackages = with unstablePkgs; [
@@ -76,4 +85,3 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
-
