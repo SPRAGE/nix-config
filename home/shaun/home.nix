@@ -33,6 +33,7 @@ let
     go
     fzf
     clippy
+    rdkafka
   ];
 
   unstablePackages = with unstablePkgs; [

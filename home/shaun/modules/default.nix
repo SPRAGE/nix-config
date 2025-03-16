@@ -5,7 +5,6 @@
     ../../modules/kitty.nix
     ../../modules/neovim
     ../../modules/sway.nix
-    ../../modules/kafka.nix
 
     ./git-config.nix
 
