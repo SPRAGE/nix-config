@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  programs.rdkafka = {
+  pkgs.rdkafka = {
     enable = true;
   };
 }
