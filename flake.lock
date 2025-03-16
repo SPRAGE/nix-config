@@ -547,11 +547,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1741931214,
-        "narHash": "sha256-VG+o6IGq8KUzm6/ShpUJKgGk47dpsXpvBfZufWQotCE=",
+        "lastModified": 1742031000,
+        "narHash": "sha256-xM4UPg4iFlRFxvUZXibSuG3ziIdCmche7OlO9wrlBFI=",
         "ref": "main",
-        "rev": "146d94be36ab35290d235798b9102ede74847550",
-        "revCount": 28,
+        "rev": "87ef82f58cf7ef27d13944e27dd0b7de9cb5889b",
+        "revCount": 38,
         "type": "git",
         "url": "ssh://git@github.com/SPRAGE/nvix.git"
       },
