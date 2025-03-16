@@ -9,6 +9,7 @@
     ./steam.nix
     ./monado.nix
     ./greetd.nix
+    ./docker.nix
 
   ];
 }
