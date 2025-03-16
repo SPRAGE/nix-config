@@ -5,6 +5,7 @@
     ../../modules/kitty.nix
     ../../modules/neovim
     ../../modules/sway.nix
+    ../../modules/docker.nix
 
     ./git-config.nix
 
