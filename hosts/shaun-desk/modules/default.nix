@@ -1,5 +1,5 @@
 {
-  imports = [ 
+  imports = [
     ./networking.nix
     ./users.nix
     ./system-packages.nix
@@ -10,7 +10,7 @@
     ./monado.nix
     ./greetd.nix
     ./docker.nix
+    ./ollama.nix
 
   ];
 }
-
