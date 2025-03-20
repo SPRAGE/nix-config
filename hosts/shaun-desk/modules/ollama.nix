@@ -1,7 +1,11 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, inputs, ... }:
+
+let
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
 {
-  environment.systemPackages = with pkgs; [
-    nixpkgs-unstable.ollama
+  environment.systemPackages = with unstable; [
+    ollama
   ];
 
   services.ollama = {
@@ -9,3 +13,4 @@
     acceleration = "cuda";
   };
 }
+
