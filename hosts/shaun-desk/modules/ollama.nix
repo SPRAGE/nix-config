@@ -1,16 +1,20 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 {
   environment.systemPackages = with unstable; [
-    ollama
+    ollama-rocm
   ];
 
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    loadModels = [ "gemma3:12b" ];
   };
 }
-
